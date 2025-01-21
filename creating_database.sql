@@ -19,7 +19,7 @@ CREATE TABLE movies (
     country VARCHAR(255) DEFAULT NULL,
     poster VARCHAR(255) DEFAULT NULL,
     director_id INT NOT NULL,
-    FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE
+    FOREIGN KEY (director_id) REFERENCES directors(id)
 );
 
 
@@ -40,8 +40,8 @@ CREATE TABLE movie_genres (
     movie_id INT NOT NULL,
     genre_id INT NOT NULL,
     PRIMARY KEY (movie_id, genre_id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
 
 
@@ -49,8 +49,8 @@ CREATE TABLE movie_actors (
     movie_id INT NOT NULL,
     actor_id INT NOT NULL,
     PRIMARY KEY (movie_id, actor_id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE CASCADE
+    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (actor_id) REFERENCES actors(id)
 );
 
 
