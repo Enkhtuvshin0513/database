@@ -4,7 +4,7 @@ USE MovieDB;
 
 
 
--- Table: directors
+
 CREATE TABLE directors (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -24,13 +24,12 @@ CREATE TABLE movies (
     FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE
 );
 
--- Table: genres
+
 CREATE TABLE genres (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) NOT NULL
 );
 
--- Table: actors
 CREATE TABLE actors (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) NOT NULL,
@@ -38,7 +37,7 @@ CREATE TABLE actors (
     nationality VARCHAR(255) NOT NULL
 );
 
--- Table: movie_genres (Many-to-Many: movies <-> genres)
+
 CREATE TABLE movie_genres (
     movie_id INT NOT NULL,
     genre_id INT NOT NULL,
@@ -47,7 +46,7 @@ CREATE TABLE movie_genres (
     FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
 );
 
--- Table: movie_actors (Many-to-Many: movies <-> actors)
+
 CREATE TABLE movie_actors (
     movie_id INT NOT NULL,
     actor_id INT NOT NULL,
@@ -56,21 +55,19 @@ CREATE TABLE movie_actors (
     FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE CASCADE
 );
 
--- Step 3: Insert Sample Data
 
--- Insert directors
 INSERT INTO directors (name, birthdate, nationality) VALUES
 ('Christopher Nolan', '1970-07-30', 'British-American'),
 ('Quentin Tarantino', '1963-03-27', 'American'),
 ('Steven Spielberg', '1946-12-18', 'American');
 
--- Insert movies
+
 INSERT INTO movies (title, year, rating, country, poster, director_id) VALUES
 ('Inception', '2010-07-16', 8.8, 'USA', NULL, 1),
 ('Django Unchained', '2012-12-25', 8.4, 'USA', NULL, 2),
 ('Jurassic Park', '1993-06-11', 8.2, 'USA', NULL, 3);
 
--- Insert genres
+
 INSERT INTO genres (name) VALUES
 ('Action'),
 ('Adventure'),
@@ -78,13 +75,13 @@ INSERT INTO genres (name) VALUES
 ('Drama'),
 ('Thriller');
 
--- Insert actors
+
 INSERT INTO actors (name, birthdate, nationality) VALUES
 ('Leonardo DiCaprio', '1974-11-11', 'American'),
 ('Jamie Foxx', '1967-12-13', 'American'),
 ('Sam Neill', '1947-09-14', 'New Zealander');
 
--- Insert movie_genres
+
 INSERT INTO movie_genres (movie_id, genre_id) VALUES
 (1, 1), -- Inception -> Action
 (1, 3), -- Inception -> Sci-Fi
@@ -93,7 +90,7 @@ INSERT INTO movie_genres (movie_id, genre_id) VALUES
 (3, 2), -- Jurassic Park -> Adventure
 (3, 3); -- Jurassic Park -> Sci-Fi
 
--- Insert movie_actors
+
 INSERT INTO movie_actors (movie_id, actor_id) VALUES
 (1, 1), -- Inception -> Leonardo DiCaprio
 (2, 2), -- Django Unchained -> Jamie Foxx
